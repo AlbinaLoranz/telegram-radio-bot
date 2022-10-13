@@ -15,17 +15,16 @@ if __name__ == '__main__':
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
 import telebot
-import redis
+#import redis
 
-r = redis.StrictRedis()
-print(r.ping())
+#r = redis.StrictRedis()
+#print(r.ping())
 
 bot = telebot.TeleBot("5312489077:AAFSoXYLLkpjAOh5u4wAZyhmWM19mtE9k3I")
 
-@bot.message_handler()
+@bot.message_handler(commands=['start', 'help'])
 def start(message):
     user_name = f'Доброе утро, <b>{message.from_user.first_name}</b>'
     bot.send_message(message.chat.id, user_name, parse_mode="html")
 
 bot.polling(none_stop=True)
-
